@@ -20,4 +20,8 @@ class Profile < ActiveRecord::Base
       errors.add(:first_name, "Life ain't easy for a boy named Sue!")
     end
   end
+
+  def self.get_all_profiles (min_year, max_year)
+    Profile.where("birth_year BETWEEN ? and ?", min_year, max_year).to_a.sort_by(&:birth_year)
+  end
 end
